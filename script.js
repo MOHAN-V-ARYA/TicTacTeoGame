@@ -21,10 +21,12 @@ box.forEach((box) => {
     box.addEventListener("click", () => {
         if (turno == true) {
             box.innerText = "O";
+            box.style.color = "blue";
             turno = false;
 
         } else { 
             box.innerText = "X";
+            box.style.color = "red";
             turno = true;
         }
         box.disabled = true;
@@ -60,8 +62,8 @@ const showwinner =(pos1) => {
     disableboxes();
     box.disabled = true;
 }
-    
 
+    
 const checkWinner = () => { 
     for (let pos of winPattren) { 
         let pos1 = box[pos[0]].innerText;
@@ -70,12 +72,27 @@ const checkWinner = () => {
         if (pos1 != "" && pos != "" && pos != "") { 
             if (pos1 == pos2 && pos2 == pos3) {
                 showwinner(pos1);
-            } else {
-               // matchdarw();
+                return;
             } 
         }   
     }
+    checkDraw();
 }
+
 
 newgame.addEventListener("click", resetgamebtn);
 resetgame.addEventListener("click", resetgamebtn);
+
+
+const checkDraw = () => {
+    // Check if all boxes are filled to avoid empty box 
+    const allFilled = Array.from(box).every(box => box.innerText !== "");
+    
+    // If all boxes are filled and no winner 
+    if (allFilled) {
+        msg.innerText = "Match-Draw!!";
+        msgcontainer.classList.remove("hide");
+        disableboxes();
+    }
+};
+
