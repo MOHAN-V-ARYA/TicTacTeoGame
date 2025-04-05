@@ -50,6 +50,14 @@ const enableboxes = () => {
 }
 
 const resetgamebtn = () => {
+    alert("!! Are You Soure To Restart The Game:")
+    turno = true;
+    enableboxes();
+    msgcontainer.classList.add("hide");
+}
+const newgamebtn = () => {
+    alert("!! Are You Soure To Start New Game:")
+    
     turno = true;
     enableboxes();
     msgcontainer.classList.add("hide");
@@ -57,7 +65,7 @@ const resetgamebtn = () => {
 
 
 const showwinner =(pos1) => {
-    msg.innerText = `Congratulation!!  Winner is ${pos1}`;
+    msg.innerText = `Congratulation!!  Winner is player :${pos1}`;
     msgcontainer.classList.remove("hide");
     disableboxes();
     box.disabled = true;
@@ -80,7 +88,7 @@ const checkWinner = () => {
 }
 
 
-newgame.addEventListener("click", resetgamebtn);
+newgame.addEventListener("click", newgamebtn);
 resetgame.addEventListener("click", resetgamebtn);
 
 
